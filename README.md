@@ -1,9 +1,12 @@
-# Fish Theme: clearance
+# Fish Theme: clear
 
 A minimalist [fish shell](http://fishshell.com/) theme for people who use git
 
-![clearance theme](https://raw.github.com/cseelus/clearance-fish/master/clearance-fish_preview.png)
+![preview](https://i.imgur.com/VdI06He.png)
 
-## Like it?
+# Installation
 
-Check out other versions of this theme for OSX Terminal or VIM!
+## Fisherman
+```fish
+fisher add fa7ad/fish-clear
+```
