@@ -39,12 +39,12 @@ function fish_prompt
   # Show git branch and status
   if [ (_git_branch_name) ]
     set -l git_branch (_git_branch_name)
+    set git_info '('
 
     if [ (_git_is_dirty) ]
-      set git_arrows "*"
-      set git_info '(' $yellow $git_branch $git_arrows $normal ')'
+      set git_info $git_info $yellow $git_branch "*" $normal
     else
-      set git_info '(' $green $git_branch $normal ')'
+      set git_info $git_info $green $git_branch $normal
     end
 
     if test -n (_git_has_upstream)
@@ -60,7 +60,9 @@ function fish_prompt
       if test $right != 0
         set git_arrows "$git_arrows⇣"
       end
+      set git_info $git_info $yellow $git_arrows $normal
     end
+    set git_info $git_info ')'
 
     echo -n -s ' · ' $git_info $normal
   end
