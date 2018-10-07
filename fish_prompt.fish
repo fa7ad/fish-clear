@@ -42,24 +42,26 @@ function fish_prompt
 
     if [ (_git_is_dirty) ]
       set git_arrows "*"
-      if test -n (_git_has_upstream)
-        git rev-list --left-right --count 'HEAD...@{upstream}' | read -la git_status
-
-        set -l left $git_status[1]
-        set -l right $git_status[2] 
-
-        if test $left != 0
-          set git_arrows "⇡"
-        end
-
-        if test $right != 0
-          set git_arrows "$git_arrows⇣"
-        end
-      end
       set git_info '(' $yellow $git_branch $git_arrows $normal ')'
     else
       set git_info '(' $green $git_branch $normal ')'
     end
+
+    if test -n (_git_has_upstream)
+      git rev-list --left-right --count 'HEAD...@{upstream}' | read -la git_status
+
+      set -l left $git_status[1]
+      set -l right $git_status[2] 
+
+      if test $left != 0
+        set git_arrows "⇡"
+      end
+
+      if test $right != 0
+        set git_arrows "$git_arrows⇣"
+      end
+    end
+
     echo -n -s ' · ' $git_info $normal
   end
 
